@@ -25,6 +25,5 @@ public class RequestInfoFilter extends AbstractFilter {
         String protocol = servletRequest.getProtocol();
         System.out.println(">>RequestInfoFilter: method='"+method+"'\n>>RemoveAddr='"+remoteAddr+"'\n>>Query='"+queryString+"'\n>>Protocol='"+protocol+"'\n");
         chain.doFilter(servletRequest,servletResponse);
-
     }
 }
