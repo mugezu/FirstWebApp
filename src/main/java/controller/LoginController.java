@@ -18,4 +18,12 @@ public class LoginController extends HttpServlet {
         System.out.println("asdfgh");
       //  response.getWriter().write("Ошибка");
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      //  super.doPost(req, resp);
+        RequestDispatcher view = req.getRequestDispatcher("l.html");
+        view.forward(req, resp);
+        System.out.println("asdfgh");
+    }
 }

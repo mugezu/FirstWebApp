@@ -1,6 +1,7 @@
 package filter;
 
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,12 @@ import java.io.IOException;
  * Created by user on 16.11.2016.
  */
 public class RequestInfoFilter extends AbstractFilter {
+    private FilterConfig filterConfig;
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        this.filterConfig=filterConfig;
+    }
+
     @Override
     public void doFilter(HttpServletRequest servletRequest, HttpServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         String method = servletRequest.getMethod();
