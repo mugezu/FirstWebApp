@@ -17,14 +17,13 @@ public class LoginController extends HttpServlet {
     private static final String PARAM_LOGIN = "login";
     private static final String PARAM_PASSWORD = "password";
     private static final String ATTRIBUTE_MODEL_TO_VIEW_USER = "user";
-    private static final String ATTRIBUTE_MODEL_TO_VIEW_ERROR = "ERROR";
     private static final String PAGE_OK = "login.jsp";
     private static final String PAGE_ERROR_ACCESS = "error.jsp";
 
     private UserDao userDao = new UserDaoMock();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter(PARAM_LOGIN);
         String password = request.getParameter(PARAM_PASSWORD);
         try {
@@ -38,18 +37,4 @@ public class LoginController extends HttpServlet {
         response.sendRedirect(PAGE_ERROR_ACCESS);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter(PARAM_LOGIN);
-        String password = req.getParameter(PARAM_PASSWORD);
-        try {
-            User model = userDao.selectByLoginPassword(login, password);
-            req.setAttribute(ATTRIBUTE_MODEL_TO_VIEW_USER, model);
-            RequestDispatcher view = req.getRequestDispatcher(PAGE_OK);
-            view.forward(req, resp);
-            return;
-        } catch (NoAccessException | NoSuchEntityException | DaoSystemException e) {
-        }
-        resp.sendRedirect(PAGE_ERROR_ACCESS);
-    }
 }

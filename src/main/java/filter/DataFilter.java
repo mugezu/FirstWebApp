@@ -20,13 +20,21 @@ public class DataFilter extends AbstractFilter {
     }
     @Override
     public void doFilter(HttpServletRequest servletRequest, HttpServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
-        Enumeration<String> stringEnumeration = servletRequest.getParameterNames();
-        System.out.println(">>Start DataFilter. List Parameters:");
-       while(stringEnumeration.hasMoreElements()){
-           String s=stringEnumeration.nextElement();
+        Enumeration<String> parametrsEnumeration = servletRequest.getParameterNames();
+        Enumeration<String> attributesEnum = servletRequest.getSession().getAttributeNames();
+
+        System.out.println(">>Start DataFilter. List Parameters request:");
+       while(parametrsEnumeration.hasMoreElements()){
+           String s=parametrsEnumeration.nextElement();
            String s1=servletRequest.getParameter(s);
            System.out.println(">>"+s+"="+s1);
        }
+        System.out.println(">>List attributes session:");
+        while(attributesEnum.hasMoreElements()){
+            String s=attributesEnum.nextElement();
+            String s1=servletRequest.getSession().getAttribute(s).toString();
+            System.out.println(">>"+s+"="+s1);
+        }
         System.out.println();
        chain.doFilter(servletRequest,servletResponse);
     }
