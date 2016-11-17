@@ -6,39 +6,37 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-  <display-name>HelloWorld Application</display-name>
-  <welcome-file-list>
-    <welcome-file>front.html</welcome-file>
-  </welcome-file-list>
+    <display-name>HelloWorld Application</display-name>
+    <welcome-file-list>
+        <welcome-file>front.html</welcome-file>
+    </welcome-file-list>
 
-  <servlet>
-    <servlet-name>controller</servlet-name>
-    <servlet-class>controller.Controller</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>loginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>controller</servlet-name>
-    <url-pattern>/hello.do</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginController</servlet-name>
+        <url-pattern>/login.html</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>requestFilter</filter-name>
+        <filter-class>filter.RequestInfoFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>requestFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-  <servlet>
-    <servlet-name>loginController</servlet-name>
-    <servlet-class>controller.LoginController</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>loginController</servlet-name>
-    <url-pattern>/login.html</url-pattern>
-  </servlet-mapping>
-  <filter>
-    <filter-name>requestFilter</filter-name>
-    <filter-class>filter.RequestInfoFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>requestFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-
+    <filter>
+        <filter-name>dataFilter</filter-name>
+        <filter-class>filter.DataFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>dataFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 
 </web-app>

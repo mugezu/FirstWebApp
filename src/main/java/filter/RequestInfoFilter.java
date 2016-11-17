@@ -14,6 +14,7 @@ public class RequestInfoFilter extends AbstractFilter {
     private FilterConfig filterConfig;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        System.out.println(">>Init RequestInfoFilter");
         this.filterConfig=filterConfig;
     }
 
@@ -23,7 +24,7 @@ public class RequestInfoFilter extends AbstractFilter {
         String remoteAddr=servletRequest.getRemoteAddr();
         String queryString = servletRequest.getQueryString();
         String protocol = servletRequest.getProtocol();
-        System.out.println(">>RequestInfoFilter: method='"+method+"'\n>>RemoveAddr='"+remoteAddr+"'\n>>Query='"+queryString+"'\n>>Protocol='"+protocol+"'\n");
+        System.out.println(">>RequestInfoFilter:\n>>Method='"+method+"'\n>>RemoveAddr='"+remoteAddr+"'\n>>Query='"+queryString+"'\n>>Protocol='"+protocol+"'\n");
         chain.doFilter(servletRequest,servletResponse);
     }
 }
