@@ -1,8 +1,7 @@
 package controller;
 
 import ClassJava.User;
-import DAO.UserDao;
-import DAO.UserDaoMock;
+import DAO.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,20 +20,23 @@ public class LoginController extends HttpServlet {
     private static final String PAGE_OK = "login.jsp";
     private static final String PAGE_ERROR_ACCESS = "error.jsp";
 
-    private UserDao userDao=new UserDaoMock();
+    private UserDao userDao = new UserDaoMock();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter(PARAM_LOGIN);
         String password = request.getParameter(PARAM_PASSWORD);
+        String errorMassage=null;
         try {
-            User model =userDao.selectByLoginPassword(login,password);
+            User model = userDao.selectByLoginPassword(login, password);
             request.setAttribute(ATTRIBUTE_MODEL_TO_VIEW, model);
             RequestDispatcher view = request.getRequestDispatcher(PAGE_OK);
             view.forward(request, response);
             return;
             //  response.getWriter().write("Ошибка");
-        } catch (Exception e) {
-
+        } catch (NoAccessException e) {
+        } catch (NoSuchEntityException e) {
+        } catch (DaoSystemException e) {
         }
         response.sendRedirect(PAGE_ERROR_ACCESS);
     }
