@@ -15,7 +15,7 @@ public abstract class AbstractFilter implements javax.servlet.Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws ServletException, IOException {
         doFilter((HttpServletRequest)servletRequest,(HttpServletResponse)servletResponse,  chain);
     }
-    public abstract  void doFilter(HttpServletRequest servletRequest, HttpServletResponse servletResponse, FilterChain chain) throws IOException, ServletException;
+    public abstract  void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException;
 
     public void destroy() {
 

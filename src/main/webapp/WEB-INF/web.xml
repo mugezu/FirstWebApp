@@ -8,7 +8,7 @@
 
     <display-name>HelloWorld Application</display-name>
     <welcome-file-list>
-        <welcome-file>front.html</welcome-file>
+        <welcome-file>front.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
@@ -20,6 +20,24 @@
         <servlet-name>loginController</servlet-name>
         <url-pattern>/login.html</url-pattern>
     </servlet-mapping>
+   <filter>
+        <filter-name>cookieFilter</filter-name>
+        <filter-class>filter.CookieFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>cookieFilter</filter-name>
+        <url-pattern>/front.jsp</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>sessionFilter</filter-name>
+        <filter-class>filter.SessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sessionFilter</filter-name>
+        <url-pattern>/front.jsp</url-pattern>
+    </filter-mapping>
+
+
     <filter>
         <filter-name>requestFilter</filter-name>
         <filter-class>filter.RequestInfoFilter</filter-class>
@@ -37,6 +55,5 @@
         <filter-name>dataFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
 
 </web-app>

@@ -19,12 +19,12 @@ public class RequestInfoFilter extends AbstractFilter {
     }
 
     @Override
-    public void doFilter(HttpServletRequest servletRequest, HttpServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
-        String method = servletRequest.getMethod();
-        String remoteAddr=servletRequest.getRemoteAddr();
-        String queryString = servletRequest.getQueryString();
-        String protocol = servletRequest.getProtocol();
+    public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+        String method = request.getMethod();
+        String remoteAddr= request.getRemoteAddr();
+        String queryString = request.getQueryString();
+        String protocol = request.getProtocol();
         System.out.println(">>RequestInfoFilter:\n>>Method='"+method+"'\n>>RemoveAddr='"+remoteAddr+"'\n>>Query='"+queryString+"'\n>>Protocol='"+protocol+"'\n");
-        chain.doFilter(servletRequest,servletResponse);
+        chain.doFilter(request, response);
     }
 }

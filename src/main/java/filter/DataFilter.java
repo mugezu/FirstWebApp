@@ -3,6 +3,7 @@ package filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,23 +20,29 @@ public class DataFilter extends AbstractFilter {
         this.filterConfig=filterConfig;
     }
     @Override
-    public void doFilter(HttpServletRequest servletRequest, HttpServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
-        Enumeration<String> parametrsEnumeration = servletRequest.getParameterNames();
-        Enumeration<String> attributesEnum = servletRequest.getSession().getAttributeNames();
+    public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+        Enumeration<String> parametrsEnumeration = request.getParameterNames();
+        Enumeration<String> attributesEnum = request.getSession().getAttributeNames();
+        Cookie[] cookieEnum = request.getCookies();
 
         System.out.println(">>Start DataFilter. List Parameters request:");
        while(parametrsEnumeration.hasMoreElements()){
            String s=parametrsEnumeration.nextElement();
-           String s1=servletRequest.getParameter(s);
+           String s1= request.getParameter(s);
            System.out.println(">>"+s+"="+s1);
        }
         System.out.println(">>List attributes session:");
         while(attributesEnum.hasMoreElements()){
             String s=attributesEnum.nextElement();
-            String s1=servletRequest.getSession().getAttribute(s).toString();
+            String s1= request.getSession().getAttribute(s).toString();
             System.out.println(">>"+s+"="+s1);
         }
         System.out.println();
-       chain.doFilter(servletRequest,servletResponse);
+        System.out.println(">>Cookie:");
+        for (int i=0;i<cookieEnum.length;i++){
+            System.out.println(">>"+ cookieEnum[i].getName()+" = "+cookieEnum[i].getValue());
+        }
+        System.out.println();
+       chain.doFilter(request, response);
     }
 }

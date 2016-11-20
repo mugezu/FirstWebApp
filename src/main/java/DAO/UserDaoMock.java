@@ -14,6 +14,7 @@ public class UserDaoMock implements UserDao {
     public UserDaoMock() {
         this.base.put("Roma", new User("Roma", "roma"));
         this.base.put("Сергей", new User("Сергей", "сергей"));
+        this.base.put("Leo", new User("Leo","leo"));
     }
 
     @Override

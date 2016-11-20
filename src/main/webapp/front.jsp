@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -18,5 +19,8 @@
     <br>
     <input type="submit" value="Entry">
 </form>
+<b2/>Сессия: вы были у нас на сайте ${counterSession} раз
+<br/>
+ <b2/>Куки: вы были у нас на сайте ${counterCookie} раз
 </body>
 </html>
