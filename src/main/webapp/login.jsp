@@ -5,5 +5,9 @@
 </head>
 <body>
 </b2>Добро пожаловать ${user.login}
+<br/>
+<a href="/allProducts.html"> Список товаров </a>
+<br/>
+
 </body>
 </html>

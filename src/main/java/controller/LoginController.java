@@ -36,5 +36,4 @@ public class LoginController extends HttpServlet {
         }
         response.sendRedirect(PAGE_ERROR_ACCESS);
     }
-
 }
