@@ -40,6 +40,14 @@
         <url-pattern>/buyProduct.html</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>basketController</servlet-name>
+        <servlet-class>controller.BasketController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>basketController</servlet-name>
+        <url-pattern>/basket.html</url-pattern>
+    </servlet-mapping>
 
     <filter>
         <filter-name>cookieFilter</filter-name>

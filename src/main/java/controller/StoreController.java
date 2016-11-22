@@ -33,20 +33,20 @@ public class StoreController extends HttpServlet {
         if (id != null) {
             try {
                 HttpSession session = req.getSession();
-                Map<Integer, Integer> oldStore;
+                Map<Product, Integer> oldStore;
                 ProductDao p = new ProductDaoInfo();
                 Product product = p.selectById(id);
                 oldStore = (Map) session.getAttribute(Attribute_storeProducts);
                 if (oldStore == null) {
-                    session.setAttribute(Attribute_storeProducts, singletonMap(id, 1));
+                    session.setAttribute(Attribute_storeProducts, singletonMap(product, 1));
                 }
                 else {
-                    Map<Integer, Integer> newStore=new LinkedHashMap<>(oldStore);
-                    if (!oldStore.containsKey(id)){
-                        newStore.put(id,1);
+                    Map<Product, Integer> newStore=new LinkedHashMap<>(oldStore);
+                    if (!oldStore.containsKey(product)){
+                        newStore.put(product,1);
                     }
                     else{
-                        newStore.put(id,newStore.get(id)+1);
+                        newStore.put(product,newStore.get(product)+1);
                     }
                     session.setAttribute(Attribute_storeProducts, newStore);
                 }

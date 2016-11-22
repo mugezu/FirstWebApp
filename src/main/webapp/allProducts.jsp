@@ -17,13 +17,13 @@
     <c:set var="total" value="${total + p.value}"/>
 </c:forEach>
 <b2>
-    У вас в корзине ${total}
+    Количество товаров в корзине: ${total}
 </b2>
 <c:forEach var="product" items="${products}">
     <li>
         <b2>Продукт</b2>
         <br/>
-        <b2>Код ${product.id} Наименование: ${product.name} Цена: ${product.price}
+        <b2>Наименование: ${product.name} Цена: ${product.price}
             <a href="./buyProduct.html?id=${product.id}">Купить товар</a></b2>
     </li>
 </c:forEach>
