@@ -8,6 +8,5 @@
 <br/>
 <a href="/allProducts.html"> Список товаров </a>
 <br/>
-
 </body>
 </html>

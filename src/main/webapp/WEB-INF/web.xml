@@ -8,7 +8,7 @@
 
     <display-name>HelloWorld Application</display-name>
     <welcome-file-list>
-        <welcome-file>front.jsp</welcome-file>
+      <!--  <welcome-file>front.jsp</welcome-file>-->
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
@@ -31,13 +31,17 @@
         <url-pattern>/allProducts.html</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>storeController</servlet-name>
+        <servlet-class>controller.StoreController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>storeController</servlet-name>
+        <url-pattern>/buyProduct.html</url-pattern>
+    </servlet-mapping>
 
 
-
-
-
-
-   <filter>
+    <filter>
         <filter-name>cookieFilter</filter-name>
         <filter-class>filter.CookieFilter</filter-class>
     </filter>

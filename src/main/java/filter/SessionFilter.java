@@ -16,13 +16,15 @@ public class SessionFilter extends AbstractFilter {
 
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpSession session = request.getSession();
-        AtomicInteger counter = (AtomicInteger) session.getAttribute(COUNTER_ENTER);
-        if (counter == null) {
-            counter = new AtomicInteger(1);
-            session.setAttribute(COUNTER_ENTER, counter);
+        HttpSession session = request.getSession(false);
+        if (session!=null) {
+            AtomicInteger counter = (AtomicInteger) session.getAttribute(COUNTER_ENTER);
+            if (counter == null) {
+                counter = new AtomicInteger(1);
+                session.setAttribute(COUNTER_ENTER, counter);
+            }
+            request.setAttribute(COUNTER_ENTER, counter.getAndIncrement());
         }
-        request.setAttribute(COUNTER_ENTER, counter.getAndIncrement());
         chain.doFilter(request, response);
     }
 }

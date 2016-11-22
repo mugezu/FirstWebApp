@@ -5,6 +5,6 @@
     <title>Ошибка</title>
 </head>
 <body>
-</b2> Ошибка входа
+</b2> Ошибка
 </body>
 </html>
